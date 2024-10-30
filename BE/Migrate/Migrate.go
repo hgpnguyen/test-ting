@@ -15,8 +15,8 @@ func init() {
 }
 
 func main() {
-	kols := getJsonData("Migrate/dummiesData.json")
-	fmt.Println(kols)
+	Initializers.DB.AutoMigrate(&Models.Kol{})
+	initDatabaseWithDummiesData("Migrate/dummiesData.json")
 }
 
 func getJsonData(filePath string) []Models.Kol {
@@ -31,3 +31,14 @@ func getJsonData(filePath string) []Models.Kol {
 	}
 	return kols
 }
+
+func initDatabaseWithDummiesData(filePath string) {
+	var count int64
+	Initializers.DB.Model(&Models.Kol{}).Count(&count)
+	fmt.Println("Num Database: ", count)
+	if count == 0 {
+		kols := getJsonData(filePath)
+		Initializers.DB.Create(kols)
+	}
+}
+
