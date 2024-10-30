@@ -34,6 +34,7 @@ func getJsonData(filePath string) []Models.Kol {
 
 func initDatabaseWithDummiesData(filePath string) {
 	var count int64
+	
 	Initializers.DB.Model(&Models.Kol{}).Count(&count)
 	fmt.Println("Num Database: ", count)
 	if count == 0 {
