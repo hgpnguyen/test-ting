@@ -10,7 +10,7 @@ type AuxKolViewModel struct {
 	ErrorMessage string        `json:"errorMessage"` // The query error
 	PageIndex    int64         `json:"pageIndex"`    //The page index
 	PageSize     int64         `json:"pageSize"`     //The page size
-	Guid         string        `json:"guid"`
+	Guid         string        `json:"-"`
 	TotalCount   int64         `json:"totalCount"`
 	KOL          []*DTO.KolDTO `json:"KolInformation"`
 }
